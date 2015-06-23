@@ -19,8 +19,8 @@ public class TIPBadgeView: UIView {
     public let STANDARD_MARGIN : CGFloat = 2
     public let LARGER_MARGIN : CGFloat = 3
     
-    public init(x : CGFloat, y : CGFloat){
-        super.init(frame: CGRect(x: x, y: y, width: 18, height: 18))
+    public init(){
+        super.init(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
         self.backgroundColor = UIColor.redColor()
         self.layer.zPosition = 1000
         self.layer.cornerRadius = 9

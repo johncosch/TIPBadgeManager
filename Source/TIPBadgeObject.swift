@@ -31,7 +31,7 @@ public class TIPViewObject: NSObject, TIPBadgeObject{
     }
     
     func addBadge(){
-        badgeView = TIPBadgeView(x: 0.0, y: 0.0)
+        badgeView = TIPBadgeView()
         self.view!.addSubview(badgeView!)
         
         self.badgeView!.setTranslatesAutoresizingMaskIntoConstraints(false)

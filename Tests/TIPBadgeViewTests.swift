@@ -16,7 +16,7 @@ class TIPBadgeViewTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        tipBadgeView = TIPBadgeView(x: 0, y: 0)
+        tipBadgeView = TIPBadgeView()
     }
     
     override func tearDown() {
