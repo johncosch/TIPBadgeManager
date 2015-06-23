@@ -13,6 +13,9 @@
 		FD1F58041B31C77A00D87939 /* TIPBadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F58031B31C77A00D87939 /* TIPBadgeManager.swift */; };
 		FD1F581C1B31E27A00D87939 /* TIPBadgeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F581B1B31E27A00D87939 /* TIPBadgeObject.swift */; };
 		FD1F581E1B31E34000D87939 /* TIPBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F581D1B31E34000D87939 /* TIPBadgeView.swift */; };
+		FDAAD1951B385B6E00FE6270 /* TIPViewObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAD1941B385B6E00FE6270 /* TIPViewObjectTests.swift */; };
+		FDAAD1971B385B9C00FE6270 /* TIPTabBarItemObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAD1961B385B9C00FE6270 /* TIPTabBarItemObjectTests.swift */; };
+		FDAAD1991B385BB000FE6270 /* TIPBadgeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAD1981B385BB000FE6270 /* TIPBadgeViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,9 @@
 		FD1F58031B31C77A00D87939 /* TIPBadgeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPBadgeManager.swift; sourceTree = "<group>"; };
 		FD1F581B1B31E27A00D87939 /* TIPBadgeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPBadgeObject.swift; sourceTree = "<group>"; };
 		FD1F581D1B31E34000D87939 /* TIPBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPBadgeView.swift; sourceTree = "<group>"; };
+		FDAAD1941B385B6E00FE6270 /* TIPViewObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPViewObjectTests.swift; sourceTree = "<group>"; };
+		FDAAD1961B385B9C00FE6270 /* TIPTabBarItemObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPTabBarItemObjectTests.swift; sourceTree = "<group>"; };
+		FDAAD1981B385BB000FE6270 /* TIPBadgeViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TIPBadgeViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,9 @@
 		FD1F57F61B31C71C00D87939 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				FDAAD1981B385BB000FE6270 /* TIPBadgeViewTests.swift */,
+				FDAAD1941B385B6E00FE6270 /* TIPViewObjectTests.swift */,
+				FDAAD1961B385B9C00FE6270 /* TIPTabBarItemObjectTests.swift */,
 				FD1F57F91B31C71C00D87939 /* TIPBadgeManagerTests.swift */,
 				FD1F57F71B31C71C00D87939 /* Supporting Files */,
 			);
@@ -228,7 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDAAD1991B385BB000FE6270 /* TIPBadgeViewTests.swift in Sources */,
 				FD1F57FA1B31C71C00D87939 /* TIPBadgeManagerTests.swift in Sources */,
+				FDAAD1971B385B9C00FE6270 /* TIPTabBarItemObjectTests.swift in Sources */,
+				FDAAD1951B385B6E00FE6270 /* TIPViewObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

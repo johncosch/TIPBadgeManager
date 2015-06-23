@@ -8,29 +8,111 @@
 
 import UIKit
 import XCTest
+import TIPBadgeManager
 
 class TIPBadgeManagerTests: XCTestCase {
     
+    let VIEW_NAME = "exampleView"
+    let TAB_BAR_NAME = "exampleTabBarName"
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        TIPBadgeManager.sharedInstance.removeBadgeObjFromDict([VIEW_NAME, TAB_BAR_NAME])
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testAddBadgeSuperViewWithView(){
+        let view = UIView()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        XCTAssert(isBadgeObjectAvalable(VIEW_NAME), "TIPBadgeManager should add badge object to tipBadgeObjDict")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+    func testAddBadgeSuperViewWithTabBarItem(){
+        let tabBar = UITabBarItem()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBar)
+        XCTAssert(isBadgeObjectAvalable(TAB_BAR_NAME), "TIPBadgeManager should add badge object to tipBadgeObjDict")
+    }
+    
+    func isBadgeObjectAvalable(name: String) -> Bool{
+        if TIPBadgeManager.sharedInstance.tipBadgeObjDict[name] != nil {
+            return true
+        } else {
+            return false
         }
+    }
+    
+    func testGetAndSetBadgeValueForView(){
+        let view = UIView()
+        let badgeVal = 2
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        TIPBadgeManager.sharedInstance.setBadgeValue(VIEW_NAME, value: badgeVal)
+        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME) == badgeVal, "TIPBadgeManager should get correct badgeValues")
+    }
+    
+    func testGetAndSetBadgeValueFor(){
+        let tabBar = UITabBarItem()
+        let badgeVal = 2
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBar)
+        TIPBadgeManager.sharedInstance.setBadgeValue(TAB_BAR_NAME, value: badgeVal)
+        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME) == badgeVal, "TIPBadgeManager should get correct badgeValues")
+    }
+    
+    func testClearAllBadgeValues(){
+        //Not sure how to test the app Icon behavior
+        //Can't put this in another function or views dealloc
+        let view = UIView()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        let tabBar = UITabBarItem()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBar)
+        
+        setExampleValsForBadges()
+        TIPBadgeManager.sharedInstance.clearAllBadgeValues(true)
+        XCTAssert(areObjectBadgeValuesZero(), "TIPBadgeManager should zero out all badge values including application Icon badge")
+    }
+    
+    
+    func setExampleValsForBadges(){
+        let viewBadgeVal: Int = 2
+        let tabBarItemBadgeVal: Int = 3
+        let appIconVal: Int = 4
+        
+        TIPBadgeManager.sharedInstance.setBadgeValue(VIEW_NAME, value: viewBadgeVal)
+        TIPBadgeManager.sharedInstance.setBadgeValue(TAB_BAR_NAME, value: tabBarItemBadgeVal)
+        let settings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().applicationIconBadgeNumber = appIconVal
+    }
+    
+    func areObjectBadgeValuesZero() -> Bool{
+        let viewBadgeVal = TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME)
+        let tabBarItemBadgeVal = TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME)
+        if viewBadgeVal == 0 && tabBarItemBadgeVal == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func testRemoveBadgeObjFromDict(){
+        let view = UIView()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        TIPBadgeManager.sharedInstance.removeBadgeObjFromDict([VIEW_NAME])
+        XCTAssert(!isBadgeObjectAvalable(VIEW_NAME), "TIPBadgeManager should remove the badge object from the tipBadgeObjDict")
+    }
+    
+    func testcleanBadgeObjectDict(){
+        let view = UIView()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        XCTAssert(TIPBadgeManager.sharedInstance.tipBadgeObjDict.count == 1, "Count of the tip badge obj dict is incremented correctly")
+        if let tipViewObj : TIPViewObject = TIPBadgeManager.sharedInstance.tipBadgeObjDict[VIEW_NAME] as? TIPViewObject {
+            tipViewObj.view = nil
+        }
+        TIPBadgeManager.sharedInstance.cleanBadgeObjectDict()
+        XCTAssert(TIPBadgeManager.sharedInstance.tipBadgeObjDict.count == 0, "cleanBadgeObjectDict should remove objects with nil views")
+        
     }
     
 }

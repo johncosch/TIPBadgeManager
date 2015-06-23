@@ -9,17 +9,17 @@
 
 public class TIPBadgeView: UIView {
     
-    var label: UILabel!
+    public var label: UILabel!
     
     var topLabelConstraint:NSLayoutConstraint?
     var bottomLabelConstraint:NSLayoutConstraint?
-    var leftLabelConstraint:NSLayoutConstraint?
-    var rightLabelConstraint:NSLayoutConstraint?
+    public var leftLabelConstraint:NSLayoutConstraint?
+    public var rightLabelConstraint:NSLayoutConstraint?
     
-    let STANDARD_MARGIN : CGFloat = 2
-    let LARGER_MARGIN : CGFloat = 3
+    public let STANDARD_MARGIN : CGFloat = 2
+    public let LARGER_MARGIN : CGFloat = 3
     
-    init(x : CGFloat, y : CGFloat){
+    public init(x : CGFloat, y : CGFloat){
         super.init(frame: CGRect(x: x, y: y, width: 18, height: 18))
         self.backgroundColor = UIColor.redColor()
         self.layer.zPosition = 1000
@@ -60,14 +60,12 @@ public class TIPBadgeView: UIView {
         self.addConstraints([topLabelConstraint!, bottomLabelConstraint!, leftLabelConstraint!, rightLabelConstraint!])
     }
     
-    func setBadgeValue(val : Int){
-        if (val != 0){
+    public func setBadgeValue(val : Int){
             label.text = " \(val) "
             setMarginsForVal(val)
-        }
     }
     
-    func setMarginsForVal(val : Int){
+    public func setMarginsForVal(val : Int){
         if val < 10 {
             leftLabelConstraint!.constant = LARGER_MARGIN
             rightLabelConstraint!.constant = LARGER_MARGIN

@@ -12,17 +12,11 @@ public class TIPBadgeManager {
     
     public static let sharedInstance = TIPBadgeManager()
     
-    var tipBadgeObjDict = [String : TIPBadgeObject]()
+    public var tipBadgeObjDict = [String : TIPBadgeObject]()
     
     private init() {}
     
-    
-    public init(someVal: String){
-        
-    }
-    
     public func addBadgeSuperview(name: String, view: AnyObject){
-        
         var badgeObj: TIPBadgeObject?
         
         if let superView = view as? UIView {
@@ -57,9 +51,36 @@ public class TIPBadgeManager {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
-    public func removeBadgesFromSuperview(keys : [String]) {
+    public func removeBadgeObjFromDict(keys : [String]) {
         for key in keys {
             tipBadgeObjDict.removeValueForKey(key)
         }
     }
+    
+    //not yet called progammatically
+    public func cleanBadgeObjectDict(){
+        for (key, value) in tipBadgeObjDict {
+            if let val = value as? TIPViewObject {
+                cleanTipViewObject(key)
+            }
+            if let val = value as? TIPTabBarItemObject {
+                cleanTipTabBarItemObject(key)
+            }
+        }
+    }
+    
+    func cleanTipViewObject(key : String){
+        var tipViewObj : TIPViewObject = tipBadgeObjDict[key] as! TIPViewObject
+        if tipViewObj.view == nil {
+            removeBadgeObjFromDict([key])
+        }
+    }
+    
+    func cleanTipTabBarItemObject(key : String){
+        var tipTabBarItemObj : TIPTabBarItemObject = tipBadgeObjDict[key] as! TIPTabBarItemObject
+        if tipTabBarItemObj.tabBar == nil {
+            removeBadgeObjFromDict([key])
+        }
+    }
+    
 }

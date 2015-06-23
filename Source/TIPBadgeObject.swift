@@ -8,24 +8,26 @@
 
 import Foundation
 
-protocol TIPBadgeObject {
+public protocol TIPBadgeObject {
     var badgeValue: Int {get set}
 }
 
-class TIPViewObject: TIPBadgeObject {
-    //you want these objects to be totally dependant on its view object being existant
+
+public class TIPViewObject: NSObject, TIPBadgeObject{
     
-    var badgeValue: Int = 0 {
+    public var observerTriggered: Bool = false
+    public var badgeValue: Int = 0 {
         willSet(newVal){
-            setBadgeValue(newVal)
+            changeBadgeValue(newVal)
         }
     }
     
-    weak var view:UIView?
-    var badgeView:TIPBadgeView?
+    public weak var view: UIView?
+    public var badgeView:TIPBadgeView?
     
-    init(view: UIView){
+    public init(view: UIView){
         self.view = view
+        super.init()
     }
     
     func addBadge(){
@@ -45,7 +47,7 @@ class TIPViewObject: TIPBadgeObject {
         self.view!.addConstraints([rightConstraint, topConstraint])
     }
     
-    func setBadgeValue(value : Int){
+    public func changeBadgeValue(value : Int){
         if value > 0 {
             if badgeView == nil {
                 addBadge()
@@ -56,30 +58,30 @@ class TIPViewObject: TIPBadgeObject {
         }
     }
     
-    func clearBadge(){
+    public func clearBadge(){
         if badgeView != nil {
             self.badgeView!.removeFromSuperview()
             self.badgeView = nil
         }
     }
-    
 }
 
-class TIPTabBarItemObject: TIPBadgeObject {
+public class TIPTabBarItemObject: NSObject, TIPBadgeObject {
     
-    var badgeValue: Int = 0 {
+    public weak var tabBar:UITabBarItem?
+    
+    public var badgeValue: Int = 0 {
         willSet(newVal){
-            setBadgeValue(newVal)
+            changeBadgeValue(newVal)
         }
     }
     
-    weak var tabBar:UITabBarItem?
-    
-    init(tabBar: UITabBarItem){
+    public init(tabBar: UITabBarItem){
         self.tabBar = tabBar
+        super.init()
     }
     
-    func setBadgeValue(value : Int){
+    public func changeBadgeValue(value : Int){
         if value > 0 {
             self.tabBar!.badgeValue = "\(value)"
         } else {
