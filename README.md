@@ -42,11 +42,6 @@ First add the view you wish to append a badge to with addBadgeSuperview. The fir
 ```
 Like the application icon badge, you remove badges from their superview by setting the value to 0.
 
-### Removing All Badges
-```
-  TIPBadgeManager.sharedInstance.clearAllBadgeValues()
-```
-
 ### Setting All Badges To The Same Value
 ```
  TIPBadgeManager.sharedInstance.setAllBadgeValues(5, appIconBadge: true)
