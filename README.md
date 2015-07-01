@@ -3,6 +3,27 @@
 ![alt text](https://github.com/johncosch/TIPBadgeManager/raw/master/Screenshots/TIPBadgeManagerImage.png "Screenshot")
 
  Use TIPBadgeManager with a single badge or easily manange all badges across your application. Cocoa Touch only has built in support for the application icon badge and UITabBarItems. With TIPBadgeManager you can easily add badges to any object that inherits from UIView!
+ 
+## Installation
+
+### CocoaPods
+CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
+```
+ $ gem install cocoapods
+```
+To integrate TIPBadgeManager into your Xcode project using CocoaPods, specify it in your Podfile:
+```
+ source 'https://github.com/CocoaPods/Specs.git'
+ platform :ios, '8.0'
+ use_frameworks!
+
+
+ pod 'TIPBadgeManager', '~> 0.2.0'
+```
+Then, run the following command:
+```
+$ pod install
+```
 
 ## Getting Started
 
@@ -25,7 +46,11 @@ Like the application icon badge, you remove badges from their superview by setti
 ```
   TIPBadgeManager.sharedInstance.clearAllBadgeValues()
 ```
-Remove all badges with the clearAllBadgeValues function.
+
+### Setting All Badges To The Same Value
+```
+ TIPBadgeManager.sharedInstance.setAllBadgeValues(5)
+```
 
 ## License
 TIPBadgeManager is released under the MIT license. See LICENSE for details.
