@@ -128,7 +128,7 @@ class TIPBadgeManagerTests: XCTestCase {
         let tabBarItem = UITabBarItem()
         TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBarItem)
         
-        TIPBadgeManager.sharedInstance.setAllBadgeValues(5)
+        TIPBadgeManager.sharedInstance.setAllBadgeValues(5, appIconBadge: true)
         XCTAssert((TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME) == 5 && TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME) == 5),"Should set all badge values to the same value")
     }
     

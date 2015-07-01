@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.name = "TIPBadgeManager"
   s.summary = "A simple module to create and manage multiple badges for iOS 8"
   s.requires_arc = true
-  s.version = "0.2.0"
+  s.version = "0.2.1"
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.authors = { "John Coschigano" => "john.coschigano@gmail.com" }
   s.homepage = "https://github.com/johncosch/TIPBadgeManager"
