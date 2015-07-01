@@ -23,7 +23,7 @@ public class TIPViewObject: NSObject, TIPBadgeObject{
     }
     
     public weak var view: UIView?
-    public var badgeView:TIPBadgeView?
+    public weak var badgeView:TIPBadgeView?
     
     public init(view: UIView){
         self.view = view
@@ -31,25 +31,27 @@ public class TIPViewObject: NSObject, TIPBadgeObject{
     }
     
     func addBadge(){
-        badgeView = TIPBadgeView()
-        self.view!.addSubview(badgeView!)
+       var bv : TIPBadgeView? = TIPBadgeView()
+       self.view!.addSubview(bv!)
         
-        self.badgeView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+       bv!.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        var badgeHeightConstraint = NSLayoutConstraint(item: self.badgeView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 18.0)
+        var badgeHeightConstraint = NSLayoutConstraint(item: bv!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: 1.0, constant: 18.0)
         
-        self.badgeView!.addConstraints([badgeHeightConstraint])
+        bv!.addConstraints([badgeHeightConstraint])
         
-        var rightConstraint = NSLayoutConstraint(item: self.view!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self.badgeView!, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 7.0)
+        var rightConstraint = NSLayoutConstraint(item: self.view!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: bv!, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 7.0)
         
-        var topConstraint = NSLayoutConstraint(item: self.view!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.badgeView!, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 5.0)
+        var topConstraint = NSLayoutConstraint(item: self.view!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: bv!, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 5.0)
         
         self.view!.addConstraints([rightConstraint, topConstraint])
+        
+        self.badgeView = bv
     }
     
     public func changeBadgeValue(value : Int){
         if value > 0 {
-            if badgeView == nil {
+            if self.badgeView == nil {
                 addBadge()
             }
             self.badgeView!.setBadgeValue(value)
@@ -59,11 +61,12 @@ public class TIPViewObject: NSObject, TIPBadgeObject{
     }
     
     public func clearBadge(){
-        if badgeView != nil {
+        if self.badgeView != nil {
             self.badgeView!.removeFromSuperview()
             self.badgeView = nil
         }
     }
+    
 }
 
 public class TIPTabBarItemObject: NSObject, TIPBadgeObject {

@@ -49,15 +49,22 @@ class TIPBadgeManagerTests: XCTestCase {
         let badgeVal = 2
         TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
         TIPBadgeManager.sharedInstance.setBadgeValue(VIEW_NAME, value: badgeVal)
-        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME) == badgeVal, "TIPBadgeManager should get correct badgeValues")
+        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME)! == badgeVal, "TIPBadgeManager should get correct badgeValues")
     }
     
-    func testGetAndSetBadgeValueFor(){
+    func testGetAndSetBadgeValueForTabBar(){
         let tabBar = UITabBarItem()
         let badgeVal = 2
         TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBar)
         TIPBadgeManager.sharedInstance.setBadgeValue(TAB_BAR_NAME, value: badgeVal)
-        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME) == badgeVal, "TIPBadgeManager should get correct badgeValues")
+        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME)! == badgeVal, "TIPBadgeManager should get correct badgeValues")
+    }
+    
+    func testGetWithNullValue(){
+        // It should also return nil if the view object has been deallocated, after much testing, I could not figure out a way to test with XCTest. 
+        // for some reason arc does not release the local bv in the add badge method until its accessed again, making it difficult to test.
+        // as far as I can tell this behavior is associated with arc and not the code.
+        XCTAssert(TIPBadgeManager.sharedInstance.getBadgeValue("someName") == nil, "TIPBadgeManager should return nil if dict cannot find object")
     }
     
     func testClearAllBadgeValues(){
@@ -113,6 +120,16 @@ class TIPBadgeManagerTests: XCTestCase {
         TIPBadgeManager.sharedInstance.cleanBadgeObjectDict()
         XCTAssert(TIPBadgeManager.sharedInstance.tipBadgeObjDict.count == 0, "cleanBadgeObjectDict should remove objects with nil views")
         
+    }
+    
+    func testSetBadgeValues(){
+        let view = UIView()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(VIEW_NAME, view: view)
+        let tabBarItem = UITabBarItem()
+        TIPBadgeManager.sharedInstance.addBadgeSuperview(TAB_BAR_NAME, view: tabBarItem)
+        
+        TIPBadgeManager.sharedInstance.setAllBadgeValues(5)
+        XCTAssert((TIPBadgeManager.sharedInstance.getBadgeValue(VIEW_NAME) == 5 && TIPBadgeManager.sharedInstance.getBadgeValue(TAB_BAR_NAME) == 5),"Should set all badge values to the same value")
     }
     
 }

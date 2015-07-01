@@ -32,8 +32,39 @@ public class TIPBadgeManager {
         tipBadgeObjDict[key]?.badgeValue = value
     }
     
-    public func getBadgeValue(key : String) -> Int {
-       return tipBadgeObjDict[key]!.badgeValue
+    public func setAllBadgeValues(value : Int){
+        for (key, _) in tipBadgeObjDict {
+            if !isTIPViewObjNil(tipBadgeObjDict[key]!) || !isTIPTabBarItemObjNil(tipBadgeObjDict[key]!){
+                setBadgeValue(key, value: value)
+            }
+        }
+    }
+    
+    public func getBadgeValue(key : String) -> Int? {
+        if tipBadgeObjDict[key] != nil {
+            if !isTIPViewObjNil(tipBadgeObjDict[key]!) || !isTIPTabBarItemObjNil(tipBadgeObjDict[key]!){
+                return tipBadgeObjDict[key]!.badgeValue
+            }
+        }
+       return nil
+    }
+    
+    func isTIPViewObjNil(tipBadgeObject: TIPBadgeObject) -> Bool{
+        if let tipViewObject = tipBadgeObject as? TIPViewObject {
+            if tipViewObject.view != nil {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func isTIPTabBarItemObjNil(tipBadgeObject: TIPBadgeObject) -> Bool{
+        if let tipTabBarItemObject = tipBadgeObject as? TIPTabBarItemObject {
+            if tipTabBarItemObject.tabBar != nil {
+                return false
+            }
+        }
+        return true
     }
     
     public func clearAllBadgeValues(clearAppIconBadge: Bool){
