@@ -18,7 +18,7 @@ To integrate TIPBadgeManager into your Xcode project using CocoaPods, specify it
  use_frameworks!
 
 
- pod 'TIPBadgeManager', '~> 0.2.0'
+ pod 'TIPBadgeManager', '~> 0.2.1'
 ```
 Then, run the following command:
 ```
@@ -49,8 +49,9 @@ Like the application icon badge, you remove badges from their superview by setti
 
 ### Setting All Badges To The Same Value
 ```
- TIPBadgeManager.sharedInstance.setAllBadgeValues(5)
+ TIPBadgeManager.sharedInstance.setAllBadgeValues(5, appIconBadge: true)
 ```
+The second parameter determines whether the app icon's badge is also set to the value specified.
 
 ## License
 TIPBadgeManager is released under the MIT license. See LICENSE for details.
