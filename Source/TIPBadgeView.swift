@@ -28,13 +28,13 @@ public class TIPBadgeView: UIView {
         addLabel()
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func addLabel(){
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.clearColor()
         label.textColor = UIColor.whiteColor()
         label.textAlignment = NSTextAlignment.Left

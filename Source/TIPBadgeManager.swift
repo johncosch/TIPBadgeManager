@@ -96,24 +96,24 @@ public class TIPBadgeManager {
     //not yet called progammatically
     public func cleanBadgeObjectDict(){
         for (key, value) in tipBadgeObjDict {
-            if let val = value as? TIPViewObject {
+            if let _ = value as? TIPViewObject {
                 cleanTipViewObject(key)
             }
-            if let val = value as? TIPTabBarItemObject {
+            if let _ = value as? TIPTabBarItemObject {
                 cleanTipTabBarItemObject(key)
             }
         }
     }
     
     func cleanTipViewObject(key : String){
-        var tipViewObj : TIPViewObject = tipBadgeObjDict[key] as! TIPViewObject
+        let tipViewObj : TIPViewObject = tipBadgeObjDict[key] as! TIPViewObject
         if tipViewObj.view == nil {
             removeBadgeObjFromDict([key])
         }
     }
     
     func cleanTipTabBarItemObject(key : String){
-        var tipTabBarItemObj : TIPTabBarItemObject = tipBadgeObjDict[key] as! TIPTabBarItemObject
+        let tipTabBarItemObj : TIPTabBarItemObject = tipBadgeObjDict[key] as! TIPTabBarItemObject
         if tipTabBarItemObj.tabBar == nil {
             removeBadgeObjFromDict([key])
         }

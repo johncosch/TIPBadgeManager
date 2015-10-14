@@ -35,7 +35,7 @@ class TIPBadgeViewTests: XCTestCase {
     }
     
     func testSetMarginsForValLessThanTen() {
-        var largerMargin = tipBadgeView!.LARGER_MARGIN
+        let largerMargin = tipBadgeView!.LARGER_MARGIN
         tipBadgeView!.setMarginsForVal(1)
         assert(constraintsAreEqualTo(largerMargin), "setMarginsForVal should set val to LARGER_MARGIN")
     }
