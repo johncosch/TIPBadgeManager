@@ -18,7 +18,7 @@ To integrate TIPBadgeManager into your Xcode project using CocoaPods, specify it
  use_frameworks!
 
 
- pod 'TIPBadgeManager', '~> 0.2.1'
+ pod 'TIPBadgeManager', '~> 0.3.0'
 ```
 Then, run the following command:
 ```
