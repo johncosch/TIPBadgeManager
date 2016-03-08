@@ -17,13 +17,28 @@ To integrate TIPBadgeManager into your Xcode project using CocoaPods, specify it
  platform :ios, '8.0'
  use_frameworks!
 
-
  pod 'TIPBadgeManager', '~> 0.3.0'
 ```
 Then, run the following command:
 ```
 $ pod install
 ```
+
+### Carthage
+
+Install Carthage - (read instructions at - [https://github.com/Carthage/Carthage](https://github.com/Carthage/Carthage))
+
+Create a Cartfile and insert the following:
+```
+ github "johncosch/TIPBadgeManager" 
+```
+Then, run the following command:
+
+```
+ carthage update
+```
+
+On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the Carthage/Build folder on disk.
 
 ## Getting Started
 
