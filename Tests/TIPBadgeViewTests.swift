@@ -40,7 +40,7 @@ class TIPBadgeViewTests: XCTestCase {
         assert(constraintsAreEqualTo(largerMargin), "setMarginsForVal should set val to LARGER_MARGIN")
     }
     
-    func constraintsAreEqualTo(val : CGFloat) -> Bool{
+    func constraintsAreEqualTo(_ val : CGFloat) -> Bool{
         if tipBadgeView!.leftLabelConstraint!.constant == val && tipBadgeView!.rightLabelConstraint!.constant == val {
             return true
         } else {
