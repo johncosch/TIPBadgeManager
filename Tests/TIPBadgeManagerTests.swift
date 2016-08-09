@@ -89,8 +89,8 @@ class TIPBadgeManagerTests: XCTestCase {
         TIPBadgeManager.sharedInstance.setBadgeValue(VIEW_NAME, value: viewBadgeVal)
         TIPBadgeManager.sharedInstance.setBadgeValue(TAB_BAR_NAME, value: tabBarItemBadgeVal)
         let settings = UIUserNotificationSettings(types: UIUserNotificationType.badge, categories: nil)
-        UIApplication.shared().registerUserNotificationSettings(settings)
-        UIApplication.shared().applicationIconBadgeNumber = appIconVal
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.applicationIconBadgeNumber = appIconVal
     }
     
     func areObjectBadgeValuesZero() -> Bool{

@@ -21,7 +21,7 @@ public class TIPBadgeView: UIView {
     
     public init(){
         super.init(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
-        self.backgroundColor = UIColor.red()
+        self.backgroundColor = UIColor.red
         self.layer.zPosition = 1000
         self.layer.cornerRadius = 9
         self.layer.masksToBounds = true
@@ -35,8 +35,8 @@ public class TIPBadgeView: UIView {
     func addLabel(){
         label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = UIColor.clear()
-        label.textColor = UIColor.white()
+        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor.white
         label.textAlignment = NSTextAlignment.left
         label.font = UIFont(name: self.label.font.fontName, size: 12.0)
         label.layer.cornerRadius = 9

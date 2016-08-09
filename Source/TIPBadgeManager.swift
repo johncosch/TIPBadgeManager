@@ -45,7 +45,7 @@ public class TIPBadgeManager {
     }
     
     func setAppIconBadgeValue(_ value : Int) {
-        UIApplication.shared().applicationIconBadgeNumber = value
+        UIApplication.shared.applicationIconBadgeNumber = value
     }
     
     public func getBadgeValue(_ key : String) -> Int? {
