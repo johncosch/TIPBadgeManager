@@ -36,7 +36,7 @@ class TIPBadgeManagerTests: XCTestCase {
         XCTAssert(isBadgeObjectAvalable(TAB_BAR_NAME), "TIPBadgeManager should add badge object to tipBadgeObjDict")
     }
     
-    func isBadgeObjectAvalable(name: String) -> Bool{
+    func isBadgeObjectAvalable(_ name: String) -> Bool{
         if TIPBadgeManager.sharedInstance.tipBadgeObjDict[name] != nil {
             return true
         } else {
@@ -88,9 +88,9 @@ class TIPBadgeManagerTests: XCTestCase {
         
         TIPBadgeManager.sharedInstance.setBadgeValue(VIEW_NAME, value: viewBadgeVal)
         TIPBadgeManager.sharedInstance.setBadgeValue(TAB_BAR_NAME, value: tabBarItemBadgeVal)
-        let settings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().applicationIconBadgeNumber = appIconVal
+        let settings = UIUserNotificationSettings(types: UIUserNotificationType.badge, categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.applicationIconBadgeNumber = appIconVal
     }
     
     func areObjectBadgeValuesZero() -> Bool{
